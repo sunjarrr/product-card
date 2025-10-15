@@ -1,19 +1,19 @@
 //Смена цвета для всех карточек
 const productCards = document.querySelectorAll('.card-container');
 const changeColorAllCardButton = document.querySelector('#change-color-all-card');
-const greenColorHash = '#8400ffff';
-const blueColorHash = '#c300ffff';
+const violetColorHash = '#8400ffff';
 
 changeColorAllCardButton.addEventListener('click', () => {
-  productCards.forEach((card) => card.style.backgroundColor = greenColorHash)
+  productCards.forEach((card) => card.style.backgroundColor = violetColorHash)
 })
 
 //Смена цвета для первой карточки
-const firstProductCards = document.querySelector('.card-container');
+const purpleColorHash = '#c300ffff';
+const firstProductCard = document.querySelector('.card-container');
 const changeColorFirstCardButton = document.querySelector('#change-color-first-card');
 
 changeColorFirstCardButton.addEventListener('click', () => {
-  firstProductCards.style.backgroundColor = blueColorHash;
+  firstProductCard.style.backgroundColor = purpleColorHash;
 })
 
 //Открыть Google
@@ -32,20 +32,20 @@ function openGoogle() {
 }
 
 //При наведении на главный заголовок ("Выбери свой продукт") - он выводится в консоль.
-const outputHead = document.querySelector('.main-headline');
+const mainHeader = document.querySelector('.main-headline');
 
-outputHead.addEventListener('mouseover', () => headOutput('Выбери свой продукт'))
+mainHeader.addEventListener('mouseover', () => headerOutput('Выбери свой продукт'))
 
-function headOutput(message) {
+function headerOutput(message) {
   console.log(message)
 }
 
 //Добавил кнопку цвет которой меняю через classList
-const itsColor = document.querySelector('#chameleon-btn');
+const changeColorBtn = document.querySelector('#chameleon-btn');
 
-  itsColor.onclick = function() {
-    itsColor.classList.toggle("chameleon_shift");
-    itsColor.classList.toggle("color-shifter");
+  changeColorBtn.onclick = function() {
+    changeColorBtn.classList.toggle("chameleon_shift");
+    changeColorBtn.classList.toggle("color-shifter");
   }
 
 
