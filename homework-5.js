@@ -8,7 +8,7 @@ determineWeather('Осаке', 21);
 //4 задание
 const LIGHT_SPEED = 343;
 function recognizeSpeed(speed) {
-  if(speed > LIGHT_SPEED) {
+  if (speed > LIGHT_SPEED) {
     console.log("Сверхзвуковая скорость");
   }
   else {
@@ -20,9 +20,9 @@ recognizeSpeed(342);
 
 //5 задание
 function buyProduct(budget) {
-let product = "яблоко";
-let price = 50;
-  if(budget > price) {
+  let product = "яблоко";
+  let price = 50;
+  if (budget > price) {
     console.log(`${product}, приобретёно. Спасибо за покупку!`);
   }
   else {
@@ -39,8 +39,8 @@ let squatting = 150;
 let deadlift = 170;
 
 function checkStrength(benchPress, squatting, deadlift) {
-  const INDICATORS = benchPress + squatting + deadlift;
-  if (INDICATORS >= 250) {
+  const indicators = benchPress + squatting + deadlift;
+  if (indicators >= 250) {
     console.log("Ваш результат хороший, если вы весите меньше 80 kg");
   }
   else {
