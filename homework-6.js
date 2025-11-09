@@ -36,10 +36,10 @@ const determineProperties = (car) => {
 determineProperties(car);
 
 //6 task
-const bringModel = (car, model) => {
+const showCarModel = (car, model) => {
   console.log(car[model]);
 }
-bringModel(car,"model");
+showCarModel(car,"model");
 
 //7 task
 const groceryCards = ['mousse', 'mask', 'faceWashGel', 'giftSet-1', 'giftSet-5'];
