@@ -25,7 +25,7 @@ car.owner = personCartography;
 console.log(car);
 
 //5 task
-const isProperties = (car) => {
+const determineProperties = (car) => {
   if (car.maximumSpeed) {
     return;
   }
@@ -33,19 +33,19 @@ const isProperties = (car) => {
     car.maximumSpeed = 250;
   }
 }
-isProperties(car);
+determineProperties(car);
 
 //6 task
-const bringOut = (car, model) => {
+const bringModel = (car, model) => {
   console.log(car[model]);
 }
-bringOut(car,"model");
+bringModel(car,"model");
 
 //7 task
 const groceryCards = ['mousse', 'mask', 'faceWashGel', 'giftSet-1', 'giftSet-5'];
 
 //8 task
-const greatBook = [
+const Books = [
   {
     name : "1984", 
     autor: "George Orwell",
@@ -68,7 +68,7 @@ const greatBook = [
     genre : "fantasy"
   }
 ]
-greatBook.push(
+Books.push(
   {
     name : "The Da Vinci Code",
     autor: "Dan Brown",
@@ -77,58 +77,48 @@ greatBook.push(
     genre : "mystery thriller"
   }
 );
-console.log(greatBook);
+console.log(Books);
 
 //9 task
-const addingBook = [
+const dcBooks = [
   {
-    name : "1984",
-    autor: "George Orwell",
-    year : 1949,
-    coverColor : "gray",
-    genre : "dystopian fiction",
-    universe: "Orwell Universe"
+    name: "Crisis on Infinite Earths",
+    autor: "Marv Wolfman",
+    year: 1985,
+    coverColor: "red",
+    genre: "superhero, crossover",
+    universe: "DC Multiverse"
   },
   {
-    name : "To Kill a Mockingbird",
-    autor: "Harper Lee",
-    year : 1960,
-    coverColor : "blue",
-    genre : "classic literature",
-    universe: "Southern Gothic"
+    name: "Batman: Year One",
+    autor: "Frank Miller",
+    year: 1987,
+    coverColor: "dark gray",
+    genre: "superhero, noir",
+    universe: "DC Universe"
   },
   {
-    name : "The Hobbit",
-    autor: "J.R.R. Tolkien",
-    year : 1937,
-    coverColor : "green",
-    genre : "fantasy",
-    universe: "Middle-earth"
+    name: "Superman: Red Son",
+    autor: "Mark Millar",
+    year: 2003,
+    coverColor: "red",
+    genre: "alternate history, superhero",
+    universe: "Elseworlds Universe"
   }
 ]
-greatBook.push(
-  {
-    name : "The Da Vinci Code",
-    autor: "Dan Brown",
-    year : 2003,
-    coverColor : "red",
-    genre : "mystery thriller",
-    universe: "Robert Langdon Universe"
-  }
-);
 
-const combinedBooks = [...greatBook, ...addingBook];
+const combinedBooks = [...Books, ...dcBooks];
 console.log(combinedBooks);
 
 //10 task
-const checkRarity = (greatBook) => {
-  if(greatBook.year < 2000) {
-    greatBook.isRare = true;
+const checkRarity = (Books) => {
+  if(Books.year < 2000) {
+    Books.isRare = true;
   }
   else {
-    greatBook.isRare = false;
+    Books.isRare = false;
   }
 }
 
-greatBook.forEach(checkRarity);
-console.log(greatBook);
+Books.forEach(checkRarity);
+console.log(Books);
