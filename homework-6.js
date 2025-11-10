@@ -25,7 +25,7 @@ car.owner = personCartography;
 console.log(car);
 
 //5 task
-const determineProperties = (car) => {
+const checkMaximumSpeed = (car) => {
   if (car.maximumSpeed) {
     return;
   }
@@ -33,19 +33,19 @@ const determineProperties = (car) => {
     car.maximumSpeed = 250;
   }
 }
-determineProperties(car);
+checkMaximumSpeed(car);
 
 //6 task
-const showCarModel = (car, model) => {
-  console.log(car[model]);
+const showObjectProperty = (object, property) => {
+  console.log(object[property]);
 }
-showCarModel(car,"model");
+showObjectProperty(car,"model");
 
 //7 task
 const groceryCards = ['mousse', 'mask', 'faceWashGel', 'giftSet-1', 'giftSet-5'];
 
 //8 task
-const Books = [
+const books = [
   {
     name : "1984", 
     autor: "George Orwell",
@@ -68,7 +68,7 @@ const Books = [
     genre : "fantasy"
   }
 ]
-Books.push(
+books.push(
   {
     name : "The Da Vinci Code",
     autor: "Dan Brown",
@@ -77,7 +77,7 @@ Books.push(
     genre : "mystery thriller"
   }
 );
-console.log(Books);
+console.log(books);
 
 //9 task
 const dcBooks = [
@@ -107,18 +107,18 @@ const dcBooks = [
   }
 ]
 
-const combinedBooks = [...Books, ...dcBooks];
+const combinedBooks = [...books, ...dcBooks];
 console.log(combinedBooks);
 
 //10 task
-const checkRarity = (Books) => {
-  if(Books.year < 2000) {
-    Books.isRare = true;
+const checkRarity = (books) => {
+  if(books.year < 2000) {
+    books.isRare = true;
   }
   else {
-    Books.isRare = false;
+    books.isRare = false;
   }
 }
 
-Books.forEach(checkRarity);
-console.log(Books);
+books.forEach(checkRarity);
+console.log(books);
