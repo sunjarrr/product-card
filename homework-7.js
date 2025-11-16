@@ -1,3 +1,4 @@
+import { socialComments } from "./comments.js";
 //Уровень 1;
 
 //2.Создать массив чисел от 1 до 10. Отфильтровать его таким образом, что бы мы получил массив чисел, начиная с 5.
@@ -13,22 +14,14 @@ console.log(findEntity);
 
 /*4. Написать функцию, которая аргументом будет принимать массив и изменять его порядок на противоположный ("переворачивать") 
  Два вышеуказанных массива с помощью этой функции перевернуть.*/
-const reverseArrayNumbers = (numbers) => {
-  numbers.reverse();
+const reverseArray = (arrays) => {
+  arrays.reverse();
 }
-reverseArrayNumbers(numbers);
-console.log(numbers);
-
-
-const reverseArrayStrings = (stringsArray) => {
-  stringsArray.reverse();
-}
-reverseArrayStrings(stringsArray);
-console.log(stringsArray);
+reverseArray(numbers);
+reverseArray(stringsArray);
+console.log(numbers, stringsArray);
 
 //Уровень 2;
-
-import { socialComments } from "./comments.js";
 
 //7. Вывести в консоль массив тех комментариев, почта пользователей которых содержит ".com"
 const findEmail = socialComments.filter(comment => comment.email.includes(".com"))
@@ -56,9 +49,7 @@ const getMailArray = socialComments.reduce((comment, property) => {
 },[])
 console.log(getMailArray);
 
-const getMailArrayTwo = socialComments.map(({email}) => {
-  return email;
-})
+const getMailArrayTwo = socialComments.map(({email}) => (email))
 console.log(getMailArrayTwo);
 
 //12. Почитать про методы toString(), join() и перебрав массив с задания №11, привести его к строке.
