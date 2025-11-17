@@ -14,8 +14,8 @@ console.log(findEntity);
 
 /*4. Написать функцию, которая аргументом будет принимать массив и изменять его порядок на противоположный ("переворачивать") 
  Два вышеуказанных массива с помощью этой функции перевернуть.*/
-const reverseArray = (arrays) => {
-  arrays.reverse();
+const reverseArray = (array) => {
+  array.reverse();
 }
 reverseArray(numbers);
 reverseArray(stringsArray);
@@ -49,7 +49,7 @@ const getMailArray = socialComments.reduce((comment, property) => {
 },[])
 console.log(getMailArray);
 
-const getMailArrayTwo = socialComments.map(({email}) => (email))
+const getMailArrayTwo = socialComments.map(({email}) => email)
 console.log(getMailArrayTwo);
 
 //12. Почитать про методы toString(), join() и перебрав массив с задания №11, привести его к строке.
