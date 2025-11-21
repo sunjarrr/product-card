@@ -23,7 +23,7 @@
   color: #515076;
 }
 
-.all-card-container {
+.product-card-list {
   display: flex;
   flex-wrap: wrap;
   margin: 110px 85px 116px 85px;
@@ -31,7 +31,7 @@
   list-style: none;
 }
 
-.card-mousse {
+.card-distance {
   margin-right: 45px;
   margin-bottom: 45px;
 }
