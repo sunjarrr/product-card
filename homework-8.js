@@ -1,5 +1,5 @@
 //3. По аналогии из лекции — создать и реализовать шаблон для продуктовых карточек.
-import { cards } from "./object.js";
+import { cards } from "./cards.js";
 
 const cardTemplate = document.querySelector('.card-template');
 const cardList = document.querySelector('.product-card-list'); 
@@ -10,7 +10,6 @@ cards.forEach(card => {
   containerClone.querySelector('.product-category').textContent = card.type;
   containerClone.querySelector('.product-title').textContent = card.name;
   containerClone.querySelector('.product-description').textContent = card.description;
-  containerClone.querySelector('.product-price-label').textContent = card.priceLabel;
   card.compound.forEach(item => {
     const ul = containerClone.querySelector('.product-composition');
     const li = document.createElement('li');
