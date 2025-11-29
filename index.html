@@ -35,11 +35,66 @@
        </div>
       </li>
   </template>
+  <div> 
+    <form id="registrationForm" class="registration">
+      <label for="name">Имя: <input class="inputField" name="name" placeholder="Введите имя" type="text" required></label>
+      <label for="surname">Фамилия: <input class="inputField" name="surname" placeholder="Введите фамилию" type="text" required></label>
+      <label for="dateOfBirthday">Дата рождения: <input class="inputField" name="dateOfBirthday" type="date" required></label>
+      <label for="login">Логин: <input class="inputField" name="login" placeholder="Введите логин" type="text" required></label>
+      <label for="password">Пароль: <input id="passwd" class="inputField" name="passwd" placeholder="Введите пароль" type="password" required></label>
+      <label for="repeatPassword">Повторите пароль: <input id="repeatPasswd" class="inputField" name="repeatPasswd" placeholder="Пароль" type="password" required></label>
+      <span id="errorMessage"></span>
+      <button id="button" type="submit">Зарегистрироваться</button>
+    </form>
+  </div>
+  <div>
+    <button id="openModal" class="authentication" type="submit">Аутентификация</button>
+    <div class="overlay">
+      <div class="modal">
+        <button class="closeModal-button" id="closeModal">X</button>
+        <span class="authorization-modal">Авторизация</span>
+        <label class="label-login" for="login">Логин:<input class="login-modal" type="text" name="login" placeholder="Введите логин:" required></label>
+        <label class="label-passwd" for="passwd">Пароль:<input class="password-modal" type="password" name="passwd" placeholder="Введите пароль:" required></label>
+        <button class="signIn" type="submit">Войти</button>
+      </div>
+    </div>
+  </div>
+  <footer class="footer">
+    <div class="footer-container">
+      <div>
+        <div class="footer-title-and-description">
+          <span class="footer-title">Product Cards</span>
+          <p class="footer-description">У Нас Самые Лучшие Продукты Для Кожи!</p>
+        </div>
+        <img class="icon-tg" src="telegram.svg" alt="Telegram Icon">
+        <img src="vk.svg" alt="VK Icon">
+      </div>
+      <div class="footer-form-container">
+        <p class="footer-form-title">Подпишись на наши акции:</p>
+        <div class="footer-shell-form">
+          <form class="footer-inside-form">
+            <input class="enter-email" name="email" placeholder="Введи Email..." type="email" required>
+            <button class="subscribe" type="submit">Подписаться</button>
+          </form>
+        </div>
+      </div>
+      <nav class="menu">
+        <span class="quick-links-text">Быстрые ссылки</span>
+        <ul class="quick-links">
+          <li class="quick-links-item"><a href="#">Главная</a></li>
+          <li class="quick-links-item"><a href="#">Магазин</a></li>
+          <li class="quick-links-item"><a href="#">Контакты</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="footer-link"><span>www.product-cards.com©all right reserve</span></div>
+  </footer>
   <script src="main.js"></script>
   <script src="homework-5.js"></script>
   <script src="homework-6.js"></script>
   <script type="module" src="homework-7.js"></script>
   <script type="module" src="homework-8.js"></script>
+  <script src="homework-9.js"></script>
 </body>
 </html>
 
