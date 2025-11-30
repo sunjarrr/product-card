@@ -22,31 +22,29 @@ emailForm.addEventListener('submit', (event) => {
 Разрешается добавить поля на ваше усмотрение. Все поля должны иметь валидацию. Если пользователь ввел два разных пароля - мы должны 
 предупредить его о том, что регистрация отклонена. Если регистрация успешна - также выводим объект с свойствами и их значениями, 
 как в задании №4. Дополнительно мы должны добавить к этому объекту свойство createdOn и указать туда время создания (используем сущность new Date())*/
-const registration = document.getElementById('registrationForm')
-const password = document.getElementById('passwd')
-const repeatePassword = document.getElementById('repeatPasswd')
-const errorMessage = document.getElementById('errorMessage')
+const registration = document.getElementById('registration-form')
+const errorMessage = document.getElementById('error-message')
 
 registration.addEventListener('submit', handleFormSubmission)
 
-let dataCreatedOn;
+let userBase;
 
 function handleFormSubmission(properties) {
-  const value1 = password.value
-  const value2 = repeatePassword.value
-  if(value2 != value1) {
+  properties.preventDefault();
+  const form = properties.target;
+  const formData = new FormData(form)
+  const password = formData.get('passwd');
+  const repeatePassword = formData.get('repeatPasswd');
+  if(repeatePassword != password) {
     properties.preventDefault();
-    errorMessage.textContent = "Регистрация отклонена";
+    errorMessage.textContent = "Регистрация отклонена, пароли не совпадают";
     return;
   }
   else {
-    const form = properties.target;
-    const formData = new FormData(form)
-    const data = Object.fromEntries(formData.entries())
-    data.createdOn = new Date(); 
-    dataCreatedOn = data; //6. Сохраняем этот объект в переменную для дальнейшего использования.
-    console.log(data)
-    properties.preventDefault();
+    const registeredUser = Object.fromEntries(formData.entries())
+    registeredUser.createdOn = new Date(); 
+    userBase = registeredUser; //6. Сохраняем этот объект в переменную для дальнейшего использования.
+    console.log(registeredUser)
   }
 }
 
@@ -60,16 +58,16 @@ function handleFormSubmission(properties) {
 
 const modal = document.querySelector('.modal')
 const overlay = document.querySelector('.overlay')
-const authenticationButton = document.getElementById('openModal')
-const closeModalButton = document.getElementById('closeModal')
+const authenticationButton = document.getElementById('open-modal')
+const closeModalButton = document.getElementById('close-modal')
 authenticationButton.addEventListener('click', () => {
-  overlay.classList.add('openOverlay')
+  overlay.classList.add('open-overlay')
   modal.classList.add('modal-showed')
 })
 
 closeModalButton.addEventListener('click', () => {
   modal.classList.remove('modal-showed')
-  overlay.classList.remove('openOverlay')
+  overlay.classList.remove('open-overlay')
 })
 
 
@@ -78,25 +76,26 @@ closeModalButton.addEventListener('click', () => {
 Если да - то по нажатию на кнопку "Войти", модальное окно должно закрыться и пользователь должен получить сообщение об успешном входе, 
 если нет - модальное окно не закрывается, пользователь получает сообщение об ошибке, например: "Неверный логин или пароль".*/
 
-const signInButton = document.querySelector('.signIn')
-const modalLogin = document.querySelector('.login-modal')
-const modalPasswd = document.querySelector('.password-modal')
+const signInButton = document.querySelector('.modal-window')
 
 let currentUser;
 
-signInButton.addEventListener('click', (authorization) => {
-  let loginValue = modalLogin.value
-  let passwdValue = modalPasswd.value
-  if(loginValue !== dataCreatedOn.login || passwdValue !== dataCreatedOn.passwd) {
+signInButton.addEventListener('submit', (authorization) => {
+  authorization.preventDefault();
+  const form = authorization.target;
+  const formData = new FormData(form);
+  const modalLoginField = formData.get('modalLogin')
+  const modalPasswdField = formData.get('modalPasswd')
+  if(modalLoginField !== userBase.login || modalPasswdField !== userBase.passwd) {
     authorization.preventDefault();
     alert("Неверный логин или пароль")
     return;
   }
   else {
     modal.classList.remove('modal-showed')
-    overlay.classList.remove('openOverlay')
+    overlay.classList.remove('open-overlay')
     alert('Успешный вход!')
-    currentUser = dataCreatedOn;
+    currentUser = userBase;
     currentUser.lastLogin = new Date();
   }
 })

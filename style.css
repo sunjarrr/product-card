@@ -8,9 +8,9 @@
   line-height: 18px;
 }
 
-.background_image_flower {
+.background-image-flower {
   position: relative;
-  background: url('background-photo.png') no-repeat;
+  background: url('/product-card/background_png/background_flower.png') no-repeat;
   background-size: inherit;
   background-position: 201px -230px;
 }
@@ -164,6 +164,7 @@
 }
 
 .enter-email {
+  width: 100%;
   font-size: 14px;
   border: none;
   outline: none;
@@ -242,10 +243,10 @@
   gap: 20px;
   border: 1px solid black;
   border-radius: 10px;
-  background: url('registration_background.jpg');
+  background: url('/product-card/background_png/registration_bg.jpg');
 }
 
-.inputField {
+.input-field {
   display: block;
   width: 100%;
 }
@@ -254,7 +255,7 @@
   display: flex;
   margin-left: 710px;
   margin-bottom: 20px;
-  background: url('authentification_background.jpg');
+  background: url('/product-card/background_png/authentification_bg.jpg');
   font-weight: 600;
   color: white;
   border-radius: 10px;
@@ -275,7 +276,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 15px;
-  background: url('modal_background.jpg') 29%;
+  background: url('/product-card/background_png/modal_bg.jpg') 29%;
   border-radius: 10px;
 }
 
@@ -283,7 +284,7 @@
   display: block;
 }
 
-.openOverlay {
+.open-overlay {
   position: fixed;
   top: 0; left: 0; width: 100%; height: 100%;
   z-index: 100;
@@ -327,7 +328,7 @@
   font-weight: 500;
 }
 
-.signIn {
+.sign-in {
   width: 100%;
   margin-top: 10px;
   margin-left: 4px;
@@ -335,7 +336,7 @@
   font-weight: 500;
 }
 
-.closeModal-button {
+.close-modal-button {
   margin-left: 260px;
   font-weight: 500;
 }
