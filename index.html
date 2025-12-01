@@ -10,7 +10,7 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="background_image_flower">
+  <div class="background-image-flower">
       <div class="button_position">
         <button id="change-color-all-card">Сменить цвет для всех карточек</button>
         <button id="change-color-first-card">Сменить цвет для первой карточки</button>
@@ -35,11 +35,79 @@
        </div>
       </li>
   </template>
+  <div> 
+    <form id="registration-form" class="registration">
+      <label for="name">Имя:
+        <input class="input-field" name="name" placeholder="Введите имя" type="text" required>
+      </label>
+      <label for="surname">Фамилия:
+        <input class="input-field" name="surname" placeholder="Введите фамилию" type="text" required>
+      </label>
+      <label for="dateOfBirthday">Дата рождения:
+        <input class="input-field" name="dateOfBirthday" type="date" required>
+      </label>
+      <label for="login">Логин:
+        <input class="input-field" name="login" placeholder="Введите логин" type="text" required></label>
+      <label for="password">Пароль:
+        <input id="passwd" class="input-field" name="passwd" placeholder="Введите пароль" type="password" required>
+      </label>
+      <label for="repeatPassword">Повторите пароль:
+        <input id="repeat-passwd" class="input-field" name="repeatPasswd" placeholder="Пароль" type="password" required>
+      </label>
+      <span id="error-message"></span>
+      <button id="button" type="submit">Зарегистрироваться</button>
+    </form>
+  </div>
+  <div>
+    <button id="open-modal" class="authentication" type="submit">Аутентификация</button>
+      <div class="overlay">
+        <div class="modal">
+          <button class="close-modal-button" id="close-modal">X</button>
+          <form class="modal-window">
+              <span class="authorization-modal">Авторизация</span>
+              <label class="label-login" for="login">Логин:<input class="login-modal" type="text" name="modalLogin" placeholder="Введите логин:" required></label>
+              <label class="label-passwd" for="passwd">Пароль:<input class="password-modal" type="password" name="modalPasswd" placeholder="Введите пароль:" required></label>
+              <button class="sign-in" type="submit">Войти</button>
+          </form>
+        </div>
+      </div>
+  </div>
+  <footer class="footer">
+    <div class="footer-container">
+      <div>
+        <div class="footer-title-and-description">
+          <span class="footer-title">Product Cards</span>
+          <p class="footer-description">У Нас Самые Лучшие Продукты Для Кожи!</p>
+        </div>
+        <img class="icon-tg" src="telegram.svg" alt="Telegram Icon">
+        <img src="vk.svg" alt="VK Icon">
+      </div>
+      <div class="footer-form-container">
+        <p class="footer-form-title">Подпишись на наши акции:</p>
+        <div class="footer-shell-form">
+          <form class="footer-inside-form">
+            <input class="enter-email" name="email" placeholder="Введи Email..." type="email" required>
+            <button class="subscribe" type="submit">Подписаться</button>
+          </form>
+        </div>
+      </div>
+      <nav class="menu">
+        <span class="quick-links-text">Быстрые ссылки</span>
+        <ul class="quick-links">
+          <li class="quick-links-item"><a href="#">Главная</a></li>
+          <li class="quick-links-item"><a href="#">Магазин</a></li>
+          <li class="quick-links-item"><a href="#">Контакты</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="footer-link"><span>www.product-cards.com©all right reserve</span></div>
+  </footer>
   <script src="main.js"></script>
   <script src="homework-5.js"></script>
   <script src="homework-6.js"></script>
   <script type="module" src="homework-7.js"></script>
   <script type="module" src="homework-8.js"></script>
+  <script src="homework-9.js"></script>
 </body>
 </html>
 
