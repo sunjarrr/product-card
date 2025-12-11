@@ -4,6 +4,7 @@ class Phone {
     this.batteryPercentage = batteryPercentage;
     this.color = color;
   }
+
   turn() {
     console.log(`Телефон ${this.name} включился, цвет ${this.color}, процент батареи ${this.batteryPercentage}`);
   }
@@ -14,9 +15,11 @@ class Android extends Phone {
     super(color, batteryPercentage, name, cardSlot);
     this.cardSlot = cardSlot;
   }
+
   sendMessage() {
     console.log(`Телефон ${this.name} включился, цвет ${this.color}. У ${this.name} есть карта памяти от компании ${this.cardSlot}`);
   }
+
   turn() {
     super.turn()
     console.log(`Обьем карты памяти ${this.cardSlot} составляет 30 GB`)

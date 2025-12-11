@@ -1,5 +1,5 @@
 import { Form } from "./form.js";
-import { ModalWindow } from "./modal.js";
+import { Modal } from "./modal.js";
 
 // Уровень 1:
 
@@ -66,17 +66,17 @@ const modal = document.getElementById('modal-id')
 const overlay = document.getElementById('overlay-id')
 const authenticationButton = document.getElementById('open-modal')
 const closeModalButton = document.getElementById('close-modal')
-const modalClass = new ModalWindow('modal-id', 'overlay-id')
-console.log(modalClass.isItOpen())
+const modalClass = new Modal('modal-id', 'overlay-id')
+console.log(modalClass.isOpen())
 authenticationButton.addEventListener('click', () => {
   modalClass.openModal()
-  modalClass.isItOpen()
-  console.log(modalClass.isItOpen())
+  modalClass.isOpen()
+  console.log(modalClass.isOpen())
 })
 
 closeModalButton.addEventListener('click', () => {
   modalClass.closeModal()
-  console.log(modalClass.isItOpen())
+  console.log(modalClass.isOpen())
 })
 
 
