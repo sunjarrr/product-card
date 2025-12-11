@@ -10,7 +10,7 @@
 
 .background-image-flower {
   position: relative;
-  background: url('/product-card/background_png/background_flower.png') no-repeat;
+  background: url('./background_image/flower.png') no-repeat;
   background-size: inherit;
   background-position: 201px -230px;
 }
@@ -243,7 +243,7 @@
   gap: 20px;
   border: 1px solid black;
   border-radius: 10px;
-  background: url('/product-card/background_png/registration_bg.jpg');
+  background: url('./background_image/registration.jpg');
 }
 
 .input-field {
@@ -255,7 +255,7 @@
   display: flex;
   margin-left: 710px;
   margin-bottom: 20px;
-  background: url('/product-card/background_png/authentification_bg.jpg');
+  background: url('./background_image/authentification.jpg');
   font-weight: 600;
   color: white;
   border-radius: 10px;
@@ -276,7 +276,7 @@
   left: 50%;
   transform: translate(-50%, -50%);
   padding: 15px;
-  background: url('/product-card/background_png/modal_bg.jpg') 29%;
+  background: url('./background_image/modal.jpg') 29%;
   border-radius: 10px;
 }
 

@@ -7,7 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="./style.css">
 </head>
 <body>
   <div class="background-image-flower">
@@ -60,10 +60,10 @@
   </div>
   <div>
     <button id="open-modal" class="authentication" type="submit">Аутентификация</button>
-      <div class="overlay">
-        <div class="modal">
+      <div id="overlay-id" class="overlay">
+        <div id="modal-id" class="modal">
           <button class="close-modal-button" id="close-modal">X</button>
-          <form class="modal-window">
+          <form id="modal-window-id" class="modal-window">
               <span class="authorization-modal">Авторизация</span>
               <label class="label-login" for="login">Логин:<input class="login-modal" type="text" name="modalLogin" placeholder="Введите логин:" required></label>
               <label class="label-passwd" for="passwd">Пароль:<input class="password-modal" type="password" name="modalPasswd" placeholder="Введите пароль:" required></label>
@@ -102,12 +102,7 @@
     </div>
     <div class="footer-link"><span>www.product-cards.com©all right reserve</span></div>
   </footer>
-  <script src="main.js"></script>
-  <script src="homework-5.js"></script>
-  <script src="homework-6.js"></script>
-  <script type="module" src="homework-7.js"></script>
-  <script type="module" src="homework-8.js"></script>
-  <script src="homework-9.js"></script>
+  <script type="module" src="main.js"></script>
 </body>
 </html>
 

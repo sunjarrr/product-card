@@ -1,3 +1,6 @@
+import { Form } from "./form.js";
+import { Modal } from "./modal.js";
+
 // Уровень 1:
 
 /* 4. К Форме, которая прикреплена в футере - добавить логику:
@@ -31,20 +34,23 @@ let userBase;
 
 function handleFormSubmission(properties) {
   properties.preventDefault();
-  const form = properties.target;
-  const formData = new FormData(form)
-  const password = formData.get('passwd');
-  const repeatePassword = formData.get('repeatPasswd');
+  const form = new Form('registration-form');
+  if(!form.checkFormValid()) {
+    return;
+  }
+  const formData = form.getAllValueForm();
+  const password = formData.passwd;
+  const repeatePassword = formData.repeatPasswd;
   if(repeatePassword != password) {
-    properties.preventDefault();
     errorMessage.textContent = "Регистрация отклонена, пароли не совпадают";
     return;
   }
   else {
-    const registeredUser = Object.fromEntries(formData.entries())
+    const registeredUser = formData;
     registeredUser.createdOn = new Date(); 
     userBase = registeredUser; //6. Сохраняем этот объект в переменную для дальнейшего использования.
     console.log(registeredUser)
+    form.resetAllValues();
   }
 }
 
@@ -56,18 +62,21 @@ function handleFormSubmission(properties) {
 1) Задний фон должен быть затемнён, но не полностью черный (Создаем класс overlay, который будет затемнять всю страницу)
 2) Модальное окно находиться ровно по центру страницы, независимо от масштаба*/
 
-const modal = document.querySelector('.modal')
-const overlay = document.querySelector('.overlay')
+const modal = document.getElementById('modal-id')
+const overlay = document.getElementById('overlay-id')
 const authenticationButton = document.getElementById('open-modal')
 const closeModalButton = document.getElementById('close-modal')
+const modalClass = new Modal('modal-id', 'overlay-id')
+console.log(modalClass.isOpen())
 authenticationButton.addEventListener('click', () => {
-  overlay.classList.add('open-overlay')
-  modal.classList.add('modal-showed')
+  modalClass.openModal()
+  modalClass.isOpen()
+  console.log(modalClass.isOpen())
 })
 
 closeModalButton.addEventListener('click', () => {
-  modal.classList.remove('modal-showed')
-  overlay.classList.remove('open-overlay')
+  modalClass.closeModal()
+  console.log(modalClass.isOpen())
 })
 
 
@@ -79,13 +88,15 @@ closeModalButton.addEventListener('click', () => {
 const signInButton = document.querySelector('.modal-window')
 
 let currentUser;
-
 signInButton.addEventListener('submit', (authorization) => {
   authorization.preventDefault();
-  const form = authorization.target;
-  const formData = new FormData(form);
-  const modalLoginField = formData.get('modalLogin')
-  const modalPasswdField = formData.get('modalPasswd')
+  const form = new Form('modal-window-id');
+  if(!form.checkFormValid()) {
+    return;
+  }
+  const formData = form.getAllValueForm();
+  const modalLoginField = formData.modalLogin
+  const modalPasswdField = formData.modalPasswd
   if(modalLoginField !== userBase.login || modalPasswdField !== userBase.passwd) {
     authorization.preventDefault();
     alert("Неверный логин или пароль")
@@ -97,6 +108,7 @@ signInButton.addEventListener('submit', (authorization) => {
     alert('Успешный вход!')
     currentUser = userBase;
     currentUser.lastLogin = new Date();
+    form.resetAllValues();
   }
 })
 
