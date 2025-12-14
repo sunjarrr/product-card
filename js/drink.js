@@ -13,28 +13,28 @@ export class Drink {
 
   serveDrink() {
     this._prepareDrink();
-    this._setTemperatureDrink();
     this.presentDrink();
+    this.getTemperatureDrink();
     this.getInfoAboutDrink();
   }
 
-  _prepareDrink() {}
+  _prepareDrink() {
+    throw new Error('Ошибка! метод должен быть переопределен в наследниках.')
+  }
 
   getTemperatureDrink() {
     console.log(`Температура данного напитка составляет ${this.#temperature} градусов`)
   }
 
-  _setTemperatureDrink() {}
-
   getInfoAboutDrink() {
     console.log(`Название - ${this.name}, температура - ${this.#temperature}, размер - ${this.size}, цена составляет - ${this.price}$`)
   }
 
-  editTemperature(newTemperature) {
+  setTemperature(newTemperature) {
     this.#temperature = newTemperature;
   }
 
-  getActualTemp() {
+  getActualTemperature() {
     return this.#temperature;
   }
 }

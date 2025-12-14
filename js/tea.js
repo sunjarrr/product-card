@@ -13,7 +13,7 @@ export class Tea extends Drink {
 
   _setTemperatureDrink() {
     const teaTemp = 90;
-    this.editTemperature(teaTemp);
-    console.log(`По итогу приготовления нашего чая его температура будет составлять - ${this.getActualTemp()} градусов`)
+    this.setTemperature(teaTemp);
+    console.log(`По итогу приготовления нашего чая его температура будет составлять - ${this.getActualTemperature()} градусов`)
   }
 }

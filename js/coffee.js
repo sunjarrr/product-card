@@ -13,7 +13,7 @@ export class Coffee extends Drink {
 
   _setTemperatureDrink() {
     const coffeeTemp = 93;
-    this.editTemperature(coffeeTemp);
-    console.log(`В дальнейшем соблюдая все условия приготовления мы получим кофе оптимальной и правильной температуры которая равна - ${this.getActualTemp()} градусам`)
+    this.setTemperature(coffeeTemp);
+    console.log(`В дальнейшем соблюдая все условия приготовления мы получим кофе оптимальной и правильной температуры которая равна - ${this.getActualTemperature()} градусам`)
   }
 }

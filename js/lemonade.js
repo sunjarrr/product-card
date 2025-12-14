@@ -13,7 +13,7 @@ export class Lemonade extends Drink {
 
   _setTemperatureDrink() {
     const lemonadeTemp = 10;
-    this.editTemperature(lemonadeTemp);
-    console.log(`У лимонада устанавливается температура в ${this.getActualTemp()} градусов`)
+    this.setTemperature(lemonadeTemp);
+    console.log(`У лимонада устанавливается температура в ${this.getActualTemperature()} градусов`)
   }
 }
