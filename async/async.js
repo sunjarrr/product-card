@@ -1,12 +1,20 @@
-const list = document.getElementById('peoples');
-async function outputData() {
+const getUser = async () => {
+  const response = await fetch('data.json');
+  if(!response.ok) {
+    throw new Error('Файл не найден');
+  }
+  const peopleData = await response.json();
+  return peopleData;
+}
+const userList = document.getElementById('user-list');
+async function outputUserData() {
   const load = document.getElementById('loading');
   if(localStorage.getItem('users')) {
     const parsedData = JSON.parse(localStorage.getItem('users'));
     if(load) {
       load.remove();
     }
-    list.innerHTML = ''
+    userList.innerHTML = '';
     appendData(parsedData.users);
   }
   else {
@@ -16,12 +24,8 @@ async function outputData() {
       }, 2000)
     })
     try {
-      const response = await fetch('data.json');
-      if(!response.ok) {
-        throw new Error('Файл не найден');
-      }
-      const peopleData = await response.json();
-      list.innerHTML = '';
+      const peopleData = await getUser();
+      userList.innerHTML = '';
       appendData(peopleData.users);
       console.log(peopleData);
       if(load) {
@@ -34,13 +38,15 @@ async function outputData() {
       }
     }
   }
-outputData();
+outputUserData();
 
 function appendData(data) {
+  const template = document.getElementById('people_list');
   data.forEach((item) => {
-    const deleteSpecificCard = document.createElement('button');
-    deleteSpecificCard.addEventListener('click', () => {
-      userCard.remove();
+    const items = template.content.cloneNode(true);
+    const specificDeleteBtn = items.querySelector('.deleteSpecificCard');
+    specificDeleteBtn.addEventListener('click', (userDelete) => {
+      userDelete.target.closest('li').remove();
       const parsedData = JSON.parse(localStorage.getItem('users'));
       const filtered = parsedData.users.filter((users) => {
         return users.id !== item.id;
@@ -48,39 +54,36 @@ function appendData(data) {
       parsedData.users = filtered;
       localStorage.setItem('users', JSON.stringify(parsedData));
     })
-    deleteSpecificCard.textContent = 'Удалить определенную карточку';
-    const userCard = document.createElement('li');
-    const userId = document.createElement('h3');
-    userId.textContent = item.id;
-    const userName = document.createElement('p');
-    userName.textContent = item.name;
-    const userSurname = document.createElement('p');
-    userSurname.textContent = item.surname;
-    const userEmail = document.createElement('p');
-    userEmail.textContent = item.email;
-    const userAge = document.createElement('p');
-    userAge.textContent = item.age;
-    userCard.append(userId, userName, userSurname, userEmail, userAge, deleteSpecificCard);
-    list.append(userCard);
+    items.querySelector('.id').textContent = item.id;
+    items.querySelector('.name').textContent = item.name;
+    items.querySelector('.surname').textContent = item.surname;
+    items.querySelector('.email').textContent = item.email;
+    items.querySelector('.age').textContent = item.age;
+    specificDeleteBtn.textContent = 'Удалить определенную карточку';
+    userList.append(items);
   });
 }
 
-const deleteAllCard = document.getElementById('deleteAllCard');
-deleteAllCard.addEventListener('click', () => {
-  list.innerHTML = '';
+const deleteAllCardBtn = document.getElementById('deleteAllCardBtn');
+deleteAllCardBtn.addEventListener('click', () => {
+  userList.innerHTML = '';
   localStorage.removeItem('users');
 })
 
-const getAllCard = document.getElementById('getAllCard');
-getAllCard.addEventListener('click', async () => {
-  const response = await fetch('data.json');
-  const peopleData = await response.json();
+const getAllCardBtn = document.getElementById('getAllCardBtn');
+getAllCardBtn.addEventListener('click', async () => {
+  try {
+  const peopleData = await getUser();
   const parsedData = JSON.parse(localStorage.getItem('users'));
   if(!parsedData || parsedData.users.length < peopleData.users.length) {
     localStorage.removeItem('users');
-    outputData();
+    outputUserData();
   }
   else {
     alert('Все пользователи отображены.');
   }
+}
+catch (error) {
+  alert('Ошибка! данные не загрузились.', error);
+}
 })

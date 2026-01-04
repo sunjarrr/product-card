@@ -7,8 +7,18 @@
   <link rel="stylesheet" href="async.css">
 </head>
 <body>
-    <button id="deleteAllCard">Удалить все карточки</button>
-    <button id="getAllCard">Получить все карточки</button>
+  <button id="deleteAllCardBtn">Удалить все карточки</button>
+  <button id="getAllCardBtn">Получить все карточки</button>
+  <template id="people_list">
+    <li>
+      <h3 class="id"></h3>
+      <p class="name"></p>
+      <p class="surname"></p>
+      <p class="email"></p>
+      <p class="age"></p>
+      <button class="deleteSpecificCard"></button>
+    </li>
+  </template>
   <div id="peoples">
     <p id="loading">Данные загружаются...</p>
     <ul id="user-list"></ul>
