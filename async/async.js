@@ -1,13 +1,13 @@
-const getUser = async () => {
+const getUsers = async () => {
   const response = await fetch('data.json');
   if(!response.ok) {
     throw new Error('Файл не найден');
   }
-  const peopleData = await response.json();
-  return peopleData;
+  const users = await response.json();
+  return users;
 }
 const userList = document.getElementById('user-list');
-async function outputUserData() {
+async function getUserData() {
   const load = document.getElementById('loading');
   if(localStorage.getItem('users')) {
     const parsedData = JSON.parse(localStorage.getItem('users'));
@@ -15,7 +15,7 @@ async function outputUserData() {
       load.remove();
     }
     userList.innerHTML = '';
-    appendData(parsedData.users);
+    provideData(parsedData.users);
   }
   else {
     await new Promise((resolve) => {
@@ -24,9 +24,9 @@ async function outputUserData() {
       }, 2000)
     })
     try {
-      const peopleData = await getUser();
+      const peopleData = await getUsers();
       userList.innerHTML = '';
-      appendData(peopleData.users);
+      provideData(peopleData.users);
       console.log(peopleData);
       if(load) {
         load.remove();
@@ -38,9 +38,9 @@ async function outputUserData() {
       }
     }
   }
-outputUserData();
+getUserData();
 
-function appendData(data) {
+function provideData(data) {
   const template = document.getElementById('people_list');
   data.forEach((item) => {
     const items = template.content.cloneNode(true);
@@ -59,7 +59,6 @@ function appendData(data) {
     items.querySelector('.surname').textContent = item.surname;
     items.querySelector('.email').textContent = item.email;
     items.querySelector('.age').textContent = item.age;
-    specificDeleteBtn.textContent = 'Удалить определенную карточку';
     userList.append(items);
   });
 }
@@ -73,11 +72,11 @@ deleteAllCardBtn.addEventListener('click', () => {
 const getAllCardBtn = document.getElementById('getAllCardBtn');
 getAllCardBtn.addEventListener('click', async () => {
   try {
-  const peopleData = await getUser();
+  const peopleData = await getUsers();
   const parsedData = JSON.parse(localStorage.getItem('users'));
   if(!parsedData || parsedData.users.length < peopleData.users.length) {
     localStorage.removeItem('users');
-    outputUserData();
+    getUserData();
   }
   else {
     alert('Все пользователи отображены.');
