@@ -6,16 +6,16 @@ const getUsers = async () => {
   const users = await response.json();
   return users;
 }
+
 const userList = document.getElementById('user-list');
 async function getUserData() {
-  const load = document.getElementById('loading');
+  const loadNotification = document.getElementById('loading');
   if(localStorage.getItem('users')) {
-    const parsedData = JSON.parse(localStorage.getItem('users'));
-    if(load) {
-      load.remove();
+    const usersFromStorage = JSON.parse(localStorage.getItem('users'));
+    if(loadNotification) {
+      loadNotification.remove();
     }
-    userList.innerHTML = '';
-    provideData(parsedData.users);
+    provideData(usersFromStorage);
   }
   else {
     await new Promise((resolve) => {
@@ -24,35 +24,29 @@ async function getUserData() {
       }, 2000)
     })
     try {
-      const peopleData = await getUsers();
-      userList.innerHTML = '';
-      provideData(peopleData.users);
-      console.log(peopleData);
-      if(load) {
-        load.remove();
+      const fetchedUsers = await getUsers();
+      provideData(fetchedUsers);
+      console.log(fetchedUsers);
+      if(loadNotification) {
+        loadNotification.remove();
       }
-      localStorage.setItem('users', JSON.stringify(peopleData));
+      localStorage.setItem('users', JSON.stringify(fetchedUsers));
     }
-  catch (error) {
+    catch (error) {
       alert('Ошибка! данные не загрузились.', error);
-      }
     }
   }
+}
 getUserData();
 
 function provideData(data) {
-  const template = document.getElementById('people_list');
+  const template = document.getElementById('people-list');
+  userList.innerHTML = '';
   data.forEach((item) => {
     const items = template.content.cloneNode(true);
-    const specificDeleteBtn = items.querySelector('.deleteSpecificCard');
-    specificDeleteBtn.addEventListener('click', (userDelete) => {
-      userDelete.target.closest('li').remove();
-      const parsedData = JSON.parse(localStorage.getItem('users'));
-      const filtered = parsedData.users.filter((users) => {
-        return users.id !== item.id;
-      })
-      parsedData.users = filtered;
-      localStorage.setItem('users', JSON.stringify(parsedData));
+    const specificDeleteBtn = items.querySelector('.delete-specific-card');
+    specificDeleteBtn.addEventListener('click', () => {
+      deleteUser(item.id)
     })
     items.querySelector('.id').textContent = item.id;
     items.querySelector('.name').textContent = item.name;
@@ -63,26 +57,36 @@ function provideData(data) {
   });
 }
 
-const deleteAllCardBtn = document.getElementById('deleteAllCardBtn');
+const deleteAllCardBtn = document.getElementById('delete-all-card-btn');
 deleteAllCardBtn.addEventListener('click', () => {
-  userList.innerHTML = '';
   localStorage.removeItem('users');
+  provideData([]);
 })
 
-const getAllCardBtn = document.getElementById('getAllCardBtn');
+const getAllCardBtn = document.getElementById('get-all-card-btn');
 getAllCardBtn.addEventListener('click', async () => {
   try {
-  const peopleData = await getUsers();
-  const parsedData = JSON.parse(localStorage.getItem('users'));
-  if(!parsedData || parsedData.users.length < peopleData.users.length) {
-    localStorage.removeItem('users');
-    getUserData();
+    const fetchedUsers = await getUsers();
+    const usersFromStorage = JSON.parse(localStorage.getItem('users'));
+    if(!usersFromStorage || usersFromStorage.length < fetchedUsers.length) {
+      provideData(fetchedUsers);
+      localStorage.setItem('users', JSON.stringify(fetchedUsers));
+    }
+    else {
+      alert('Все пользователи отображены.');
+    }
   }
-  else {
-    alert('Все пользователи отображены.');
+  catch (error) {
+    alert('Ошибка! данные не загрузились.', error);
   }
-}
-catch (error) {
-  alert('Ошибка! данные не загрузились.', error);
-}
 })
+
+function deleteUser(itemId) {
+  let usersFromStorage = JSON.parse(localStorage.getItem('users'));
+  const filtered = usersFromStorage.filter((user) => {
+    return user.id !== itemId;
+  })
+  usersFromStorage = filtered;
+  localStorage.setItem('users', JSON.stringify(usersFromStorage));
+  provideData(filtered)
+}
