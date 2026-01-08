@@ -1,6 +1,6 @@
-const getUsers = async () => {
-  const response = await fetch('data.json');
-  if(!response.ok) {
+const fetchUsers = async () => {
+  const response = await fetch('users.json');
+  if (!response.ok) {
     throw new Error('Файл не найден');
   }
   const users = await response.json();
@@ -8,14 +8,14 @@ const getUsers = async () => {
 }
 
 const userList = document.getElementById('user-list');
-async function getUserData() {
+async function getUsers() {
   const loadNotification = document.getElementById('loading');
-  if(localStorage.getItem('users')) {
+  if (localStorage.getItem('users')) {
     const usersFromStorage = JSON.parse(localStorage.getItem('users'));
-    if(loadNotification) {
+    if (loadNotification) {
       loadNotification.remove();
     }
-    provideData(usersFromStorage);
+    renderUsers(usersFromStorage);
   }
   else {
     await new Promise((resolve) => {
@@ -24,10 +24,10 @@ async function getUserData() {
       }, 2000)
     })
     try {
-      const fetchedUsers = await getUsers();
-      provideData(fetchedUsers);
+      const fetchedUsers = await fetchUsers();
+      renderUsers(fetchedUsers);
       console.log(fetchedUsers);
-      if(loadNotification) {
+      if (loadNotification) {
         loadNotification.remove();
       }
       localStorage.setItem('users', JSON.stringify(fetchedUsers));
@@ -37,9 +37,9 @@ async function getUserData() {
     }
   }
 }
-getUserData();
+getUsers();
 
-function provideData(data) {
+function renderUsers(data) {
   const template = document.getElementById('people-list');
   userList.innerHTML = '';
   data.forEach((item) => {
@@ -60,16 +60,16 @@ function provideData(data) {
 const deleteAllCardBtn = document.getElementById('delete-all-card-btn');
 deleteAllCardBtn.addEventListener('click', () => {
   localStorage.removeItem('users');
-  provideData([]);
+  renderUsers([]);
 })
 
 const getAllCardBtn = document.getElementById('get-all-card-btn');
 getAllCardBtn.addEventListener('click', async () => {
   try {
-    const fetchedUsers = await getUsers();
+    const fetchedUsers = await fetchUsers();
     const usersFromStorage = JSON.parse(localStorage.getItem('users'));
-    if(!usersFromStorage || usersFromStorage.length < fetchedUsers.length) {
-      provideData(fetchedUsers);
+    if (!usersFromStorage || usersFromStorage.length < fetchedUsers.length) {
+      renderUsers(fetchedUsers);
       localStorage.setItem('users', JSON.stringify(fetchedUsers));
     }
     else {
@@ -88,5 +88,5 @@ function deleteUser(itemId) {
   })
   usersFromStorage = filtered;
   localStorage.setItem('users', JSON.stringify(usersFromStorage));
-  provideData(filtered)
+  renderUsers(filtered)
 }
