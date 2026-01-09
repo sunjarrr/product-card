@@ -44,7 +44,7 @@ console.log(getArrObjects);
 Должна быть защита от введенных других значений (имеется ввиду проверка if).
 P.S - код из задания №3 переместить в функцию, не нужно его дублировать
 */
-/*function countCards() {
+function countCards() {
   const count = Number(prompt('Сколько карточек отобразить? От 1 до 5'))
     if (isNaN(count) || count < 1 || count > 5) {
       alert("Введите число от 1 до 5");
@@ -53,4 +53,4 @@ P.S - код из задания №3 переместить в функцию, 
      renderCards(cards.slice(0, count));
     }
 }
-countCards();*/
+countCards();

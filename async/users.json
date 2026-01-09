@@ -1,0 +1,25 @@
+[
+  {
+    "name": "Sanzhar",
+    "id": 1,
+    "surname": "Irgebay",
+    "email": "irgebays@gmail.com",
+    "age": 21
+  },
+  {
+    "name": "Artas",
+    "id": 2,
+    "surname": "Menetil",
+    "email": "artas@gmail.com",
+    "age": 35
+  },
+  {
+    "name": "Vito",
+    "id": 3,
+    "surname": "Scaletta",
+    "email": "vitorio@gmail.com",
+    "age": 26
+  }
+]
+
+

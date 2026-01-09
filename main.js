@@ -8,6 +8,7 @@ import './js/modal.js'
 import './js/phone.js'
 import { Cafe } from './js/cafe.js'
 import { Lemonade } from './js/lemonade.js'
+import './async/async.js';
 
 const orderLemonade = new Lemonade('Марокканский', 'large', 10, 15, 'сладкий', 'небольшое', 'клубники')
 const cafe = new Cafe('Vo dvore', 'Astana, Mangilik el 47');
